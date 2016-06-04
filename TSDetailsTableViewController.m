@@ -20,6 +20,7 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
 @property (strong, nonatomic) UIImage *imageThree;
 
 @property (strong, nonatomic) NSMutableArray *arrayImages;
+@property (strong, nonatomic) NSMutableArray *updateArrayImages;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *collectionButton;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -42,6 +43,7 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
     self.title = @"Post your item";
     [self.navigationItem.backBarButtonItem setTitle:@""];
     self.arrayImages = [NSMutableArray array];
+    self.updateArrayImages = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -175,15 +177,17 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
     TSProduct *product = [NSEntityDescription insertNewObjectForEntityForName:@"TSProduct"
                                                        inManagedObjectContext:self.managedObjectContext];
     product.name = self.nameTextField.text;
-//    NSMutableString *formatingString = [NSMutableString stringWithString:self.priceTextField.text];
-//    [formatingString insertString:@"$" atIndex:0];
-//    [formatingString insertString:@"," atIndex:3];
+//    NSNumberFormatter *formatter = [NSNumberFormatter new];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    NSString *formattedString = [formatter numberFromString:self.priceTextField.text];
     product.price = self.priceTextField.text;
     product.specification = self.descriptionTextField.text;
     product.images = [NSKeyedArchiver archivedDataWithRootObject:self.arrayImages];
     [self.managedObjectContext save:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+#pragma mark - Save editing product
 
 - (void)editingCurrentProduct
 {
@@ -193,8 +197,16 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
 //    [formatingString insertString:@"," atIndex:3];
     self.currentProduct.price = self.priceTextField.text;
     self.currentProduct.specification = self.descriptionTextField.text;
-    self.currentProduct.images = [NSKeyedArchiver archivedDataWithRootObject:self.arrayImages];
     
+    for (UIButton *button in self.collectionButton) {
+        if (![button.imageView.image isEqual:[UIImage imageNamed:@"photo"]]) {
+            UIImage *image = button.imageView.image;
+            [self.updateArrayImages addObject:image];
+        }
+    }
+    
+    NSData *imageArchive = [NSKeyedArchiver archivedDataWithRootObject:self.updateArrayImages];
+    self.currentProduct.images = imageArchive;
     [self.managedObjectContext save:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

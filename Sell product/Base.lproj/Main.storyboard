@@ -33,7 +33,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTP-qH-D3e" userLabel="BackgroundView">
                                                     <rect key="frame" x="12" y="4" width="576" height="92"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H2o-2e-KUI">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H2o-2e-KUI">
                                                             <rect key="frame" x="3" y="3" width="93" height="86"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="93" id="C0b-lG-arY"/>
@@ -239,7 +239,7 @@
                                                         <outlet property="delegate" destination="jRd-qp-ClX" id="MCi-2p-Chd"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" placeholder="   Write a schort description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uOD-cy-ceE">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" placeholder=".   Write a schort description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uOD-cy-ceE">
                                                     <rect key="frame" x="22" y="65" width="556" height="131"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
