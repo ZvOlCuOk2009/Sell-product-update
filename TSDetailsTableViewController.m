@@ -72,9 +72,19 @@ static NSString * messageCreation = @"Fill out all the required fields \nto crea
     
     self.images = self.arrayImages;
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]
+                                                                   style:UIBarButtonItemStylePlain target:self
+                                                                  action:@selector(actionBack:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     self.nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
     self.priceTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
     self.descriptionTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
+}
+
+- (void)actionBack:(UIBarButtonItem *)item
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)currentProduct:(TSProduct *)product

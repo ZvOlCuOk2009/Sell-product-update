@@ -196,11 +196,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="315" id="OCH-rU-yQw">
-                                        <rect key="frame" x="0.0" y="126" width="600" height="315"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="412" id="OCH-rU-yQw">
+                                        <rect key="frame" x="0.0" y="126" width="600" height="412"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OCH-rU-yQw" id="3rh-d1-QIU">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="315"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="412"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Item hedline" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBS-O7-BVV">
@@ -221,7 +221,7 @@
                                                     </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="$    0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4lP-7e-jsE">
-                                                    <rect key="frame" x="22" y="204" width="556" height="39"/>
+                                                    <rect key="frame" x="22" y="243" width="556" height="39"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="c9J-oT-bZl"/>
@@ -238,10 +238,10 @@
                                                     </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" placeholder="Write a schort description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uOD-cy-ceE">
-                                                    <rect key="frame" x="22" y="65" width="556" height="131"/>
+                                                    <rect key="frame" x="22" y="65" width="556" height="170"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="131" id="Pea-sP-Ewf"/>
+                                                        <constraint firstAttribute="height" constant="170" id="Pea-sP-Ewf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -270,7 +270,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="63" id="tF2-BZ-79T">
-                                        <rect key="frame" x="0.0" y="441" width="600" height="63"/>
+                                        <rect key="frame" x="0.0" y="538" width="600" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF2-BZ-79T" id="Zpa-B5-H6G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -468,8 +468,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="edit" width="16" height="16"/>
+        <image name="edit" width="24" height="24"/>
         <image name="photo" width="32" height="32"/>
-        <image name="trash" width="16" height="16"/>
+        <image name="trash" width="24" height="24"/>
     </resources>
 </document>

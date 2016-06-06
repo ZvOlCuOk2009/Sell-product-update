@@ -77,12 +77,15 @@
     CGRect frameDiscover = CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44);
     CGRect frameSell = CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44);
     
-    TSCustomButton *discoverButton = [TSCustomButton customButton:frameDiscover parentView:self.view color:VIOLET_COLOR image:[UIImage imageNamed:@"discover"] title:@"Discover" correctValue:20 titleColor:WHITE_COLOR];
+    TSCustomButton *discoverButton  = [TSCustomButton customButton:frameDiscover  color:VIOLET_COLOR image:[UIImage imageNamed:@"discover"] title:@"Discover" correctOffset:20 titleColor:WHITE_COLOR];
     
-    TSCustomButton *sellButton = [TSCustomButton customButton:frameSell parentView:self.view color:LIGHTGRAY_COLOR image:[UIImage imageNamed:@"sell"] title:@"Sell" correctValue:0 titleColor:GRAY_COLOR];
+    TSCustomButton *sellButton = [TSCustomButton customButton:frameSell color:LIGHTGRAY_COLOR image:[UIImage imageNamed:@"sell"] title:@"Sell" correctOffset:0 titleColor:GRAY_COLOR];
     
     [discoverButton addTarget:self action:@selector(actionDiscover:) forControlEvents:UIControlEventTouchUpInside];
     [sellButton addTarget:self action:@selector(actionSell:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:discoverButton];
+    [self.view addSubview:sellButton];
 }
 
 #pragma mark - NSManagedObjectContext

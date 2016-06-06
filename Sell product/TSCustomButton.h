@@ -10,7 +10,7 @@
 
 @interface TSCustomButton : UIButton
 
-+ (TSCustomButton *)customButton:(CGRect)frame parentView:(UIView *)view color:(UIColor *)color image:(UIImage *)image
-                           title:(NSString *)title correctValue:(NSInteger)value titleColor:(UIColor *)titleColor;
++ (TSCustomButton *)customButton:(CGRect)frame color:(UIColor *)color image:(UIImage *)image
+                           title:(NSString *)title correctOffset:(NSInteger)offset titleColor:(UIColor *)titleColor;
 
 @end
