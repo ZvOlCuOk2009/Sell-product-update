@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD1983511D03FA0500880B52 /* NSString+TSFormattedStingPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1983501D03FA0500880B52 /* NSString+TSFormattedStingPrice.m */; };
+		FD1983621D04E47000880B52 /* TSCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1983611D04E47000880B52 /* TSCustomButton.m */; };
 		FD50FBBF1D01B0CF0029E341 /* TSProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD50FBBE1D01B0CF0029E341 /* TSProductsViewController.m */; };
 		FD50FBC21D01B1080029E341 /* TSDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD50FBC11D01B1080029E341 /* TSDescriptionViewController.m */; };
 		FDA79B711CF5CD4E002EB69F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA79B701CF5CD4E002EB69F /* main.m */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD19834F1D03FA0500880B52 /* NSString+TSFormattedStingPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TSFormattedStingPrice.h"; sourceTree = "<group>"; };
+		FD1983501D03FA0500880B52 /* NSString+TSFormattedStingPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TSFormattedStingPrice.m"; sourceTree = "<group>"; };
+		FD1983601D04E47000880B52 /* TSCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCustomButton.h; sourceTree = "<group>"; };
+		FD1983611D04E47000880B52 /* TSCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCustomButton.m; sourceTree = "<group>"; };
 		FD50FBBD1D01B0CF0029E341 /* TSProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSProductsViewController.h; sourceTree = "<group>"; };
 		FD50FBBE1D01B0CF0029E341 /* TSProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSProductsViewController.m; sourceTree = "<group>"; };
 		FD50FBC01D01B1080029E341 /* TSDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDescriptionViewController.h; sourceTree = "<group>"; };
@@ -104,6 +110,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD19834B1D03F81A00880B52 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FD19834F1D03FA0500880B52 /* NSString+TSFormattedStingPrice.h */,
+				FD1983501D03FA0500880B52 /* NSString+TSFormattedStingPrice.m */,
+			);
+			name = Category;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FD19835F1D04E42300880B52 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				FD1983601D04E47000880B52 /* TSCustomButton.h */,
+				FD1983611D04E47000880B52 /* TSCustomButton.m */,
+			);
+			name = CustomButton;
+			sourceTree = "<group>";
+		};
 		FDA79B631CF5CD4D002EB69F = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +154,8 @@
 			children = (
 				FDA79BA51CF5CE19002EB69F /* App */,
 				FDA79BA61CF5CE2D002EB69F /* Core Data */,
+				FD19834B1D03F81A00880B52 /* Category */,
+				FD19835F1D04E42300880B52 /* CustomButton */,
 				FDA79BAA1CF5CE96002EB69F /* Cell */,
 				FDA79BAE1CF5CF51002EB69F /* Controllers */,
 				FDA79B781CF5CD4F002EB69F /* Main.storyboard */,
@@ -357,8 +384,10 @@
 				FD50FBBF1D01B0CF0029E341 /* TSProductsViewController.m in Sources */,
 				FDA79BC31CF5DBEB002EB69F /* TSProduct.m in Sources */,
 				FDA79BB41CF5D464002EB69F /* TSDetailsTableViewController.m in Sources */,
+				FD1983621D04E47000880B52 /* TSCustomButton.m in Sources */,
 				FDA79B7D1CF5CD4F002EB69F /* Sell_product.xcdatamodeld in Sources */,
 				FD50FBC21D01B1080029E341 /* TSDescriptionViewController.m in Sources */,
+				FD1983511D03FA0500880B52 /* NSString+TSFormattedStingPrice.m in Sources */,
 				FDA79BC11CF5DBEB002EB69F /* TSImages.m in Sources */,
 				FDA79BB11CF5D141002EB69F /* TSTableViewCell.m in Sources */,
 				FDA79BC21CF5DBEB002EB69F /* TSProduct+CoreDataProperties.m in Sources */,

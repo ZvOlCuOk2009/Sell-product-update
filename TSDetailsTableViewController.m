@@ -8,10 +8,10 @@
 
 #import "TSDetailsTableViewController.h"
 #import "TSDataManager.h"
+#import "NSString+TSFormattedStingPrice.h"
 #import <CoreData/CoreData.h>
 
-static NSString * messageCreation = @"Fill in the required fields,\nthe name and\nprice of the product";
-static NSString * messageEdition = @"Make any changes\nbefore saving product...";
+static NSString * messageCreation = @"Fill out all the required fields \nto create a product \nimage, name\nand price...";
 
 @interface TSDetailsTableViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
@@ -28,10 +28,10 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
 
 @property (strong, nonatomic) TSProduct *currentProduct;
 @property (strong, nonatomic) UIButton *buttonEditing;
+@property (strong, nonatomic) UIButton *oneButton;
 @property (assign, nonatomic) NSInteger currentTag;
 @property (assign, nonatomic) NSInteger counter;
-@property (assign, nonatomic) BOOL fieldTestName;
-@property (assign, nonatomic) BOOL fieldTestPrise;
+
 
 @end
 
@@ -42,8 +42,11 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
     
     self.title = @"Post your item";
     [self.navigationItem.backBarButtonItem setTitle:@""];
+    
     self.arrayImages = [NSMutableArray array];
     self.updateArrayImages = [NSMutableArray array];
+    
+    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +72,9 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
     
     self.images = self.arrayImages;
     
-    _fieldTestName = NO;
-    _fieldTestPrise = NO;
+    self.nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
+    self.priceTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
+    self.descriptionTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 10, 0);
 }
 
 - (void)currentProduct:(TSProduct *)product
@@ -130,42 +134,32 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
 - (IBAction)postItAction:(id)sender
 {
     if (self.currentProduct) {
+        self.oneButton = [self.collectionButton objectAtIndex:0];
+        if (![self.oneButton.imageView.image isEqual:[UIImage imageNamed:@"photo"]] && ![self.nameTextField.text isEqualToString:@""] && ![self.priceTextField.text isEqualToString:@""]) {
         [self editingCurrentProduct];
-        [self saveProduct];
-    } else {
-        if (_fieldTestName == YES && _fieldTestPrise == YES) {
-            [self createdNewProduct];
-            [self saveProduct];
         } else {
-            [self alertController:messageCreation];
+            [self warningAlertController];
+        }
+    } else {
+        
+        if (![self.oneButton.imageView.image isEqual:[UIImage imageNamed:@"photo"]] && ![self.nameTextField.text isEqualToString:@""] && ![self.priceTextField.text isEqualToString:@""]) {
+            [self createdNewProduct];
+        } else {
+            [self warningAlertController];
         }
     }
 }
 
-- (void)saveProduct
-{
-    _fieldTestName = NO;
-    _fieldTestPrise = NO;
-}
-
-- (IBAction)actionEventTextFieldName:(id)sender {
-    _fieldTestName = YES;
-}
-
-- (IBAction)actionEventTextFieldPrice:(id)sender {
-    _fieldTestPrise = YES;
-}
-
-- (void)alertController:(NSString *)message
+- (void)warningAlertController
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please!"
-                                                                             message:message
+                                                                             message:messageCreation
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"Ok"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                               
-                                                           }];
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            
+                                                        }];
     [alertController addAction:alertAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -177,10 +171,7 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
     TSProduct *product = [NSEntityDescription insertNewObjectForEntityForName:@"TSProduct"
                                                        inManagedObjectContext:self.managedObjectContext];
     product.name = self.nameTextField.text;
-//    NSNumberFormatter *formatter = [NSNumberFormatter new];
-//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-//    NSString *formattedString = [formatter numberFromString:self.priceTextField.text];
-    product.price = self.priceTextField.text;
+    product.price = [NSString formattedStringPrice:self.priceTextField.text];
     product.specification = self.descriptionTextField.text;
     product.images = [NSKeyedArchiver archivedDataWithRootObject:self.arrayImages];
     [self.managedObjectContext save:nil];
@@ -192,10 +183,7 @@ static NSString * messageEdition = @"Make any changes\nbefore saving product..."
 - (void)editingCurrentProduct
 {
     self.currentProduct.name = self.nameTextField.text;
-//    NSMutableString *formatingString = [NSMutableString stringWithString:self.priceTextField.text];
-//    [formatingString insertString:@"$" atIndex:0];
-//    [formatingString insertString:@"," atIndex:3];
-    self.currentProduct.price = self.priceTextField.text;
+    self.currentProduct.price = [NSString formattedStringPrice:self.priceTextField.text];
     self.currentProduct.specification = self.descriptionTextField.text;
     
     for (UIButton *button in self.collectionButton) {

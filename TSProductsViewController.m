@@ -9,14 +9,16 @@
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue: b/255.0 alpha:1.0]
 #define VIOLET_COLOR RGB(79, 49, 108)
 #define LIGHTGRAY_COLOR RGB(221, 221, 221)
+#define WHITE_COLOR RGB(255, 255, 255)
+#define GRAY_COLOR RGB(115, 115, 115)
 
 #import "TSProductsViewController.h"
 #import "TSDetailsTableViewController.h"
 #import "TSTableViewCell.h"
 #import "TSDataManager.h"
 #import "TSProduct+CoreDataProperties.h"
-#import "TSImages+CoreDataProperties.h"
 #import "TSDescriptionViewController.h"
+#import "TSCustomButton.h"
 #import <CoreData/CoreData.h>
 
 @interface TSProductsViewController () <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
@@ -26,6 +28,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UISearchBar *searchBar;
+@property (strong, nonatomic) NSOperation *currentOperation;
 
 @end
 
@@ -34,14 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(4, 0, 0, 0)];
-    
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 35, 40)];
-    searchBar.backgroundImage = [[UIImage alloc] init];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
-    
-    searchBar.showsCancelButton = YES;
-    searchBar.delegate = self;
+    [self.tableView setContentInset:UIEdgeInsetsMake(4, 0, 48, 0)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,25 +48,41 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self.tableView reloadData];
-    
-    UIButton *discoverButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44)];
-    discoverButton.backgroundColor = VIOLET_COLOR;
-    [discoverButton setImage:[UIImage imageNamed:@"discover"] forState:UIControlStateNormal];
-    [discoverButton addTarget:self action:@selector(actionDiscover:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *sellButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44)];
-    sellButton.backgroundColor = LIGHTGRAY_COLOR;
-    [sellButton setImage:[UIImage imageNamed:@"sell"] forState:UIControlStateNormal];
-    [sellButton addTarget:self action:@selector(actionSell:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:discoverButton];
-    [self.view addSubview:sellButton];
+
+    [self configureSearchBar];
+    [self configureTabBar];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+}
+
+#pragma mark - UISearchBar
+
+- (void)configureSearchBar
+{
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 35, 40)];
+    searchBar.backgroundImage = [[UIImage alloc] init];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
+    
+    searchBar.showsCancelButton = YES;
+    searchBar.delegate = self;
+}
+
+#pragma mark - the bottom panel buttons
+
+- (void)configureTabBar
+{
+    CGRect frameDiscover = CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44);
+    CGRect frameSell = CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height - 44, self.view.frame.size.width / 2, 44);
+    
+    TSCustomButton *discoverButton = [TSCustomButton customButton:frameDiscover parentView:self.view color:VIOLET_COLOR image:[UIImage imageNamed:@"discover"] title:@"Discover" correctValue:20 titleColor:WHITE_COLOR];
+    
+    TSCustomButton *sellButton = [TSCustomButton customButton:frameSell parentView:self.view color:LIGHTGRAY_COLOR image:[UIImage imageNamed:@"sell"] title:@"Sell" correctValue:0 titleColor:GRAY_COLOR];
+    
+    [discoverButton addTarget:self action:@selector(actionDiscover:) forControlEvents:UIControlEventTouchUpInside];
+    [sellButton addTarget:self action:@selector(actionSell:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - NSManagedObjectContext
@@ -99,7 +111,7 @@
     return cell;
 }
 
-#pragma mark - Configure Cell
+#pragma mark - Configure cell
 
 - (void)configureCell:(TSTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {

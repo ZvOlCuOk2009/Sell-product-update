@@ -41,9 +41,9 @@
     self.priceTextView.editable = NO;
     self.descriptionTextView.editable = NO;
     
-    [self.nameTextView setDelegate:self];
-    [self.priceTextView setDelegate:self];
-    [self.descriptionTextView setDelegate:self];
+//    [self.nameTextView setDelegate:self];
+//    [self.priceTextView setDelegate:self];
+//    [self.descriptionTextView setDelegate:self];
 }
 
 - (void)viewDidLayoutSubviews
@@ -139,13 +139,13 @@
     self.pageControl.currentPage = pageNumber;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    
+//    if([text isEqualToString:@"\n"]) {
+//        [textView resignFirstResponder];
+//        return NO;
+//    }
+//    return YES;
+//}
 
 @end
