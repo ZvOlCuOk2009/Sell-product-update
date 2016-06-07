@@ -40,11 +40,14 @@
     self.nameTextView.editable = NO;
     self.priceTextView.editable = NO;
     self.descriptionTextView.editable = NO;
-    
-//    [self.nameTextView setDelegate:self];
-//    [self.priceTextView setDelegate:self];
-//    [self.descriptionTextView setDelegate:self];
 }
+
+/*
+- (void)actionBack:(UIBarButtonItem *)item
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+ */
 
 - (void)viewDidLayoutSubviews
 {
@@ -138,14 +141,5 @@
     NSInteger pageNumber = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.pageControl.currentPage = pageNumber;
 }
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    
-//    if([text isEqualToString:@"\n"]) {
-//        [textView resignFirstResponder];
-//        return NO;
-//    }
-//    return YES;
-//}
 
 @end
